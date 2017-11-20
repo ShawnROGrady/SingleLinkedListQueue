@@ -1,16 +1,17 @@
 //Code By Shawn O'Grady
 
 /*
-In trying to learn JS I am trying to implement some common data structures
++In trying to learn JS I am trying to implement some common data structures
 
-This is my attempt at a singly linked list queue
-Values in the queue will be of string type
-End goal is to have user enter prompts (in main function) in order to perform the following functions:
++This is my attempt at a singly linked list queue
++Values in the queue will be of string type
++End goal is to have user enter prompts (in main function) in order to perform the following functions:
   1. enqueue a value
   2. dequeue a value
   3. print the entire queue
   4. close the program
 
++I currently believe I can enqueue values and print the queue
 */
 
 //using strict node for safety
