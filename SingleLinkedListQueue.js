@@ -11,9 +11,8 @@
   3. print the entire queue
   4. close the program
 
-+I currently believe I can enqueue values, print values, and dequeue from user input
++I currently believe I can enqueue values, print values, and dequeue
   -dequeue function feels like it could be done better
-  -need to fix print so there aren't so many pop-ups
 */
 
 //using strict node for safety
@@ -105,11 +104,9 @@ function sllQueue(){
       }
 
       //var tmpValue=tmp.value;
-      //console.log(tmp.value+" was dequeued");
       alert(tmp.value+" was dequeued");
     }else{
       //list is empty
-      //console.log("queue is empty, cannot dequeue another item");
       alert("queue is empty, cannot dequeue another item");
     }
   }
@@ -120,17 +117,18 @@ function sllQueue(){
   function doPrint(){
     if(head.value!=null){
       //there are things in the list
+      var queueString="Queue contains(in order): \n";  //will hold entirety of queue as single string for simple printing
+
       var tmp=head;
-      //console.log(tmp.value); //print value
-      alert(tmp.value); //print value
+      queueString=queueString+tmp.value+"\r"; //add value to the string
+
       while(tmp!=tail){
         tmp=tmp.nextNode;
-        //console.log(tmp.value); //print value
-        alert(tmp.value); //print value
+        queueString=queueString+tmp.value+"\r"; //add value to the string
       }
+      alert(queueString); //print the entirety of the queue as single string
     }else{
       //list is empty
-      //console.log("queue is empty");
       alert("queue is empty");
     }
   }
@@ -181,7 +179,7 @@ function main(){
   var q=sllQueue();
   var choice;
   do{
-    choice=prompt("What would you like to do? \r 1. enqueue a value \r 2. dequeue a value\r 3. print the queue \r4. terminate program");
+    choice=prompt("What would you like to do? \r 1. enqueue a value \r 2. dequeue a value \r 3. print the queue \r 4. terminate program");
     if(choice==1){
       //enqueue a value
       var userInput=prompt("enter a value to enqueue");
@@ -195,15 +193,17 @@ function main(){
       //print the queue
       q.print();
     }
-    else if (choice==4){
+    else if (choice==4||choice==null){
+      //user wants to terminate or hit "cancel" button
       alert("thank you for using this program");
     }
     else{
       //invalid choice
       alert("please enter a valid choice");
     }
-  }while(choice!=4)
+  }while(choice!=4 && choice!=null)
 }
 main();
+
 
 
