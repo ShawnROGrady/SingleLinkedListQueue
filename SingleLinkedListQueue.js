@@ -64,13 +64,13 @@ function sllQueue(){
 
   var head=Node();
   var tail=Node();
-  head.setNextNode(tail);
+  //head.setNextNode(tail);
   //enqueue function:
   function doEnqueue(input){
     var tmp= Node(); //create new node with specified value
     tmp.makeNode(input);
     console.log(tmp.value + " was enqueued");
-
+ 
     if(tail.value!=null){
       //there are things in the list;
       tail.setNextNode(tmp);
@@ -84,16 +84,31 @@ function sllQueue(){
   }
 
   //dequeue function:
-  /*
-  function doDequeue(){
-    if(this.head.value!=null){
-      //there are things in the list;
 
+  function doDequeue(){
+    if(head.value!=null){
+      //there are things in the list;
+      var tmp=head;
+      if(head!=tail){
+        //we're not at the end of the queue
+        head=head.nextNode;
+      }
+      
+      else{
+        //we're dequeueing the last item in the queue
+        head=Node();
+        tail=Node();
+        //head.setNextNode(tail);
+      }
+      
+      //var tmpValue=tmp.value;
+      console.log(tmp.value+" was dequeued");
     }else{
       //list is empty
+      console.log("queue is empty, cannot dequeue another item");
     }
   }
-    */
+
 
     //print queue function:
 
@@ -108,25 +123,49 @@ function sllQueue(){
       }
     }else{
       //list is empty
-      alert("queue is empty");
+      console.log("queue is empty");
     }
   }
 
   var publicAPI={
     enqueue:doEnqueue,
-    print:doPrint
+    print:doPrint,
+    dequeue:doDequeue
   };
   return publicAPI;
 }
 
 //testing basic functions:
 var q=sllQueue();
+q.print();
+
 q.enqueue("hi");
 q.enqueue("hey");
 q.enqueue("hello");
 q.print();
 
+q.dequeue();
+q.print();
+q.dequeue();
+q.dequeue();
 
+//q.enqueue("again");
+q.print();  //should say "queue is empty"
+q.dequeue();  //should say "queue is empty, cannot dequeue another item"
+
+q.enqueue("again");
+q.enqueue("another");
+q.enqueue("one more");
+q.print();
+
+q.dequeue();
+q.print();
+q.dequeue();
+q.dequeue();
+
+//q.enqueue("again");
+q.print();  //should say "queue is empty"
+q.dequeue();  //should say "queue is empty, cannot dequeue another item"
 
 //main function:
 /*
@@ -139,3 +178,4 @@ function main(){
 }
 main();
 */
+
