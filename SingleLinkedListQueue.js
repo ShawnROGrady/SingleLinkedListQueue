@@ -11,7 +11,9 @@
   3. print the entire queue
   4. close the program
 
-+I currently believe I can enqueue values and print the queue
++I currently believe I can enqueue values, print values, and dequeue from user input
+  -dequeue function feels like it could be done better
+  -need to fix print so there aren't so many pop-ups
 */
 
 //using strict node for safety
@@ -69,8 +71,9 @@ function sllQueue(){
   function doEnqueue(input){
     var tmp= Node(); //create new node with specified value
     tmp.makeNode(input);
-    console.log(tmp.value + " was enqueued");
- 
+    //console.log(tmp.value + " was enqueued");
+    alert(tmp.value + " was enqueued");
+
     if(tail.value!=null){
       //there are things in the list;
       tail.setNextNode(tmp);
@@ -93,19 +96,21 @@ function sllQueue(){
         //we're not at the end of the queue
         head=head.nextNode;
       }
-      
+
       else{
         //we're dequeueing the last item in the queue
         head=Node();
         tail=Node();
         //head.setNextNode(tail);
       }
-      
+
       //var tmpValue=tmp.value;
-      console.log(tmp.value+" was dequeued");
+      //console.log(tmp.value+" was dequeued");
+      alert(tmp.value+" was dequeued");
     }else{
       //list is empty
-      console.log("queue is empty, cannot dequeue another item");
+      //console.log("queue is empty, cannot dequeue another item");
+      alert("queue is empty, cannot dequeue another item");
     }
   }
 
@@ -116,14 +121,17 @@ function sllQueue(){
     if(head.value!=null){
       //there are things in the list
       var tmp=head;
-      console.log(tmp.value); //print value
+      //console.log(tmp.value); //print value
+      alert(tmp.value); //print value
       while(tmp!=tail){
         tmp=tmp.nextNode;
-        console.log(tmp.value); //print value
+        //console.log(tmp.value); //print value
+        alert(tmp.value); //print value
       }
     }else{
       //list is empty
-      console.log("queue is empty");
+      //console.log("queue is empty");
+      alert("queue is empty");
     }
   }
 
@@ -134,7 +142,7 @@ function sllQueue(){
   };
   return publicAPI;
 }
-
+/*
 //testing basic functions:
 var q=sllQueue();
 q.print();
@@ -166,16 +174,36 @@ q.dequeue();
 //q.enqueue("again");
 q.print();  //should say "queue is empty"
 q.dequeue();  //should say "queue is empty, cannot dequeue another item"
+*/
 
 //main function:
-/*
 function main(){
-  //curently just test code
-  var choice= prompt("Would you like to continue? (1 for yes, 0 for no)");
+  var q=sllQueue();
+  var choice;
   do{
-    choice=prompt("Would you like to continue? (1 for yes, 0 for no)");
-  }while(choice!=0)
+    choice=prompt("What would you like to do? \r 1. enqueue a value \r 2. dequeue a value\r 3. print the queue \r4. terminate program");
+    if(choice==1){
+      //enqueue a value
+      var userInput=prompt("enter a value to enqueue");
+      q.enqueue(userInput);
+    }
+    else if(choice==2){
+      //dequeue a value
+      q.dequeue();
+    }
+    else if(choice==3){
+      //print the queue
+      q.print();
+    }
+    else if (choice==4){
+      alert("thank you for using this program");
+    }
+    else{
+      //invalid choice
+      alert("please enter a valid choice");
+    }
+  }while(choice!=4)
 }
 main();
-*/
+
 
