@@ -1,6 +1,6 @@
 # SingleLinkedListQueue
 
-I am just starting to learn JavaScript and figured a good way to familarize myself with the new language was to make something similar to what I have made in the past with C++ (language I havbe most experience with)
+I am just starting to learn JavaScript and figured a good way to familarize myself with the new language was to make something similar to what I have made in the past with C++ (language I have the most experience with)
 
 Making a single linked list queue seemed like a logical starting point because it is a familiar data structure, but has enough complextiy for me to actually learn about the intricacies of using JavaScript
 
