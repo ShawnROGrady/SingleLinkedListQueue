@@ -63,8 +63,8 @@ function Node(){
 //sll Queue:
 function sllQueue(){
 
-  var head=Node();
-  var tail=Node();
+  var head=Node();  //node that will be dequeued first
+  var tail=Node();  //node that will be dequeued last
   //head.setNextNode(tail);
   //enqueue function:
   function doEnqueue(input){
@@ -74,7 +74,7 @@ function sllQueue(){
     alert(tmp.value + " was enqueued");
 
     if(tail.value!=null){
-      //there are things in the list;
+      //there are things in the queue;
       tail.setNextNode(tmp);
       tail=tmp;
     }else{
@@ -122,6 +122,7 @@ function sllQueue(){
       var tmp=head;
       queueString=queueString+tmp.value+"\r"; //add value to the string
 
+      //traverse queue, head to tail, adding values to string
       while(tmp!=tail){
         tmp=tmp.nextNode;
         queueString=queueString+tmp.value+"\r"; //add value to the string
@@ -145,31 +146,34 @@ function sllQueue(){
 var q=sllQueue();
 q.print();
 
+//testing if properly enqueues:
 q.enqueue("hi");
 q.enqueue("hey");
 q.enqueue("hello");
-q.print();
 
-q.dequeue();
-q.print();
-q.dequeue();
-q.dequeue();
+q.print();  //"hi hey hello"
 
-//q.enqueue("again");
+//testing if properly dequeues to empty:
+q.dequeue();  //"hi"
+q.print();  //"hey hello"
+q.dequeue();  //"hey"
+q.dequeue();  //"hello"
+
 q.print();  //should say "queue is empty"
 q.dequeue();  //should say "queue is empty, cannot dequeue another item"
 
+//testing if properly enqueues after being fully dequeued:
 q.enqueue("again");
 q.enqueue("another");
 q.enqueue("one more");
-q.print();
+q.print(); //"again another one more"
 
-q.dequeue();
-q.print();
-q.dequeue();
-q.dequeue();
+//testing if properly dequeues after being emptied + refilled:
+q.dequeue();  //"again"
+q.print();  //"another one more"
+q.dequeue();  //"another"
+q.dequeue();  //"one more"
 
-//q.enqueue("again");
 q.print();  //should say "queue is empty"
 q.dequeue();  //should say "queue is empty, cannot dequeue another item"
 */
@@ -204,6 +208,7 @@ function main(){
   }while(choice!=4 && choice!=null)
 }
 main();
+
 
 
 
