@@ -9,9 +9,10 @@
   1. enqueue a value
   2. dequeue a value
   3. print the entire queue
-  4. close the program
+  4. search the queue for a specified value
+  5. close the program
 
-+I currently believe I can enqueue values, print values, and dequeue
++I currently believe I can enqueue values, print values, dequeue, and search
   -dequeue function feels like it could be done better
 */
 
@@ -117,7 +118,7 @@ function sllQueue(){
   function doPrint(){
     if(head.value!=null){
       //there are things in the list
-      var queueString="Queue contains(in order): \n";  //will hold entirety of queue as single string for simple printing
+      var queueString="Queue contains(in order): \r";  //will hold entirety of queue as single string for simple printing
 
       var tmp=head;
       queueString=queueString+tmp.value+"\r"; //add value to the string
@@ -127,6 +128,7 @@ function sllQueue(){
         tmp=tmp.nextNode;
         queueString=queueString+tmp.value+"\r"; //add value to the string
       }
+
       alert(queueString); //print the entirety of the queue as single string
     }else{
       //list is empty
@@ -134,11 +136,45 @@ function sllQueue(){
     }
   }
 
+  //function to search for specific value in queue:
+  function doSearch(searchValue){
+    var position=0;  //position of value searched for in queue
+
+    if(head.value!=null){
+      //there are things in the queue
+      var tmp=head;
+
+      //traverse queue searching for specific value
+      do{
+        if (tmp.value==searchValue){
+          //value found
+          break;
+        }
+        tmp=tmp.nextNode;
+        position++;
+      }while(tmp!=tail);
+
+      //at this point, we've either find the value or are at the tail
+      if(tmp.value!=searchValue){
+        alert(searchValue+" was not found in the queue");
+      }
+      else{
+        alert(searchValue+" found in queue at position: "+position);
+      }
+
+    }else{
+      //queue is empty
+      alert("queue is empty, cannot search for a value");
+    }
+  }
+
   var publicAPI={
     enqueue:doEnqueue,
     print:doPrint,
-    dequeue:doDequeue
+    dequeue:doDequeue,
+    search:doSearch
   };
+
   return publicAPI;
 }
 /*
@@ -183,7 +219,7 @@ function main(){
   var q=sllQueue();
   var choice;
   do{
-    choice=prompt("What would you like to do? \r 1. enqueue a value \r 2. dequeue a value \r 3. print the queue \r 4. terminate program");
+    choice=prompt("What would you like to do? \r 1. enqueue a value \r 2. dequeue a value \r 3. print the queue \r 4. search the queue \r 5. terminate program");
     if(choice==1){
       //enqueue a value
       var userInput=prompt("enter a value to enqueue");
@@ -197,7 +233,12 @@ function main(){
       //print the queue
       q.print();
     }
-    else if (choice==4||choice==null){
+    else if(choice==4){
+      //search the queue
+      var searchInput=prompt("enter a value to search for");
+      q.search(searchInput);
+    }
+    else if (choice==5||choice==null){
       //user wants to terminate or hit "cancel" button
       alert("thank you for using this program");
     }
@@ -205,10 +246,6 @@ function main(){
       //invalid choice
       alert("please enter a valid choice");
     }
-  }while(choice!=4 && choice!=null)
+  }while(choice!=5 && choice!=null)
 }
 main();
-
-
-
-
